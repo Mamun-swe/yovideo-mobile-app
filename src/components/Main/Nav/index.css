@@ -1,0 +1,63 @@
+.home-nav .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #000;
+    z-index: 9;
+}
+
+.home-nav .navbar .d-flex {
+    width: 100%;
+    font-size: 22px;
+    color: #fff;
+}
+
+.home-nav .navbar .d-flex i {
+    padding: 10px;
+    color: #fff;
+}
+
+.home-nav .break {
+    height: 58px;
+}
+
+.home-nav .side-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 250px;
+    background: #000;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+.home-nav .side-menu .close-icon {
+    color: #fff;
+    font-size: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.home-nav .side-menu ul {
+    padding-left: 0;
+}
+
+.home-nav .side-menu ul li {
+    list-style: none;
+}
+
+.home-nav .side-menu ul li a {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: capitalize;
+    display: block;
+    padding: 9px 20px;
+    border-bottom: 1px solid #2e2d2d;
+}
+
+.home-nav .side-menu ul li a i{
+    margin-right: 10px;
+}
