@@ -1,3 +1,11 @@
+/* App */
+
+.App {
+    overflow-x: hidden;
+}
+
+/* Video Card */
+
 .video-card {
     width: 50%;
     float: left;

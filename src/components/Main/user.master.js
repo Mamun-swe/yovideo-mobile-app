@@ -10,7 +10,7 @@ import FavouriteList from './Account/Favourite/index';
 import MyVideos from './Account/my-videos/index';
 import UploadVideo from './Account/Upload/index';
 
-import Player from './Player/index';
+import VideoPlayer from './Player/index';
 
 class UserMaster extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class UserMaster extends Component {
                     <Route path="/home/favourite" component={FavouriteList} />
                     <Route path="/home/my-videos" component={MyVideos} />
                     <Route path="/home/upload" component={UploadVideo} />
-                    <Route path="/home/play/:id" component={Player} />
+                    <Route path="/home/play/:id" component={VideoPlayer} />
                 </Switch>
             </div>
         );
