@@ -9,7 +9,7 @@ class VideoPlayer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            url: 'http://media.w3.org/2010/05/bunny/movie.mp4'
+            url: 'https://www.youtube.com/embed/qvVOShe8LVI?list=RDMMqvVOShe8LVI'
         }
     }
     render() {

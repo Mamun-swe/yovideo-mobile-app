@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './index.css';
+import { Link } from 'react-router-dom';
 
 import poster from '../../../assets/poster/1.jpg';
-import { Link } from 'react-router-dom';
 
 class SingleCategory extends Component {
     constructor(props) {
