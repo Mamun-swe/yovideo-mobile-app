@@ -1,0 +1,63 @@
+.auth {
+    background: url('../../../assets/static/login_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    position: relative;
+}
+
+.auth .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.808);
+}
+
+.auth .overlay .card {
+    width: 90%;
+    background: none;
+}
+
+.auth .overlay .card form {
+    font-family: Roboto-Light;
+}
+
+.auth .overlay .card form small {
+    color: rgb(212, 211, 211);
+}
+
+.auth .overlay .card form .form-control {
+    font-size: 14px;
+    background: none;
+    color: rgb(119, 118, 118);
+    height: 40px;
+    border: 0;
+    padding-left: 0;
+    border-bottom: 1px solid rgb(119, 118, 118);
+}
+
+.auth .overlay .card form .form-control:focus {
+    box-shadow: none;
+}
+
+.auth .overlay .card form .btn {
+    color: rgb(119, 118, 118);
+    background: #000;
+    font-family: Roboto-Regular;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.auth .overlay .card h4 {
+    color: rgb(119, 118, 118);
+    font-family: Roboto-Bold;
+}
+
+.auth .overlay .card a {
+    color: rgb(119, 118, 118);
+    font-size: 14px;
+    font-family: Roboto-Regular;
+}

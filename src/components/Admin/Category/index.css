@@ -1,0 +1,33 @@
+.admin-category .float-btn{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 7px 12px;
+}
+
+.admin-category .card{
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    border: 0;
+    margin-bottom: 30px;
+}
+
+.admin-category .card img{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.admin-category .card .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.623);
+}
+
+.admin-category .card .overlay p{
+    color: #fff;
+    font-family: Roboto-Bold;
+}

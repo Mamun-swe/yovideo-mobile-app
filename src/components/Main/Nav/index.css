@@ -58,6 +58,31 @@
     border-bottom: 1px solid #2e2d2d;
 }
 
-.home-nav .side-menu ul li a i{
+.home-nav .side-menu ul li a i {
     margin-right: 10px;
+}
+
+/* Search Bar */
+
+.home-nav .search-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    height: 59px;
+    right: -100%;
+    padding-top: 10px;
+    padding-left: 8px;
+    transition: 0.3s;
+}
+
+.home-nav .search-menu .form-control {
+    border: 0;
+    border-bottom: 1px solid #dfdfdf;
+    font-family: Roboto-Regular;
+    font-size: 15px;
+}
+
+.home-nav .fa-search {
+    font-size: 21px;
 }

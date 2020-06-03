@@ -3,11 +3,15 @@ import './index.css';
 import { NavLink } from 'react-router-dom';
 import $ from 'jquery';
 
+import closeIcon from '../../../assets/icons/close.png';
+
 class Nav extends Component {
     constructor(props) {
         super(props);
         this.state = {}
     }
+
+
 
     openMenu() {
         $('.side-menu').css("left", "0%");
@@ -15,6 +19,14 @@ class Nav extends Component {
 
     closeMenu() {
         $('.side-menu').css("left", "-100%");
+    }
+
+    openSearch = () => {
+        $('.search-menu').css("right", "0%")
+    }
+
+    closeSearch = () => {
+        $('.search-menu').css("right", "-100%")
     }
 
 
@@ -30,9 +42,28 @@ class Nav extends Component {
                             <h5 className="text-uppercase mb-0 mt-2">yovideos</h5>
                         </div>
                         <div>
-                            <NavLink to="/home/search"><i className="fas fa-search"></i></NavLink>
+                            <button type="button" className="btn p-0" onClick={this.openSearch}>
+                                <i className="fas fa-search"></i>
+                            </button>
                         </div>
                     </div>
+
+                    {/* Search Menu */}
+                    <div className="search-menu">
+                        <div className="d-flex">
+                            <div className="w-100">
+                                <form>
+                                    <input type="text" className="form-control rounded-0 shadow-none pl-1" placeholder="Search" />
+                                </form>
+                            </div>
+                            <div className="ml-auto">
+                                <button type="button" className="btn rounded-0 shadow-none" onClick={this.closeSearch}>
+                                    <img src={closeIcon} alt="..." />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="side-menu">
                         <div className="text-right">
                             <span className="close-icon" onClick={this.closeMenu}>&times;</span>
