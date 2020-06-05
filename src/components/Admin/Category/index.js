@@ -45,7 +45,7 @@ class Category extends Component {
                     </div>
                 </div>
 
-                <Link to="/admin/category" className="btn btn-primary rounded-circle shadow float-btn">
+                <Link to="/admin/category/create" className="btn btn-primary rounded-circle shadow float-btn">
                     <i className="fas fa-plus"></i>
                 </Link>
 
