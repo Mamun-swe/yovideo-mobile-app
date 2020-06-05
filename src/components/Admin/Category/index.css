@@ -1,11 +1,11 @@
-.admin-category .float-btn{
+.admin-category .float-btn {
     position: fixed;
     bottom: 30px;
     right: 30px;
     padding: 7px 12px;
 }
 
-.admin-category .card{
+.admin-category .card {
     height: 100px;
     overflow: hidden;
     position: relative;
@@ -13,12 +13,12 @@
     margin-bottom: 30px;
 }
 
-.admin-category .card img{
+.admin-category .card img {
     min-width: 100%;
     min-height: 100%;
 }
 
-.admin-category .card .overlay{
+.admin-category .card .overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -27,7 +27,29 @@
     background: rgba(0, 0, 0, 0.623);
 }
 
-.admin-category .card .overlay p{
+.admin-category .card .overlay p {
     color: #fff;
     font-family: Roboto-Bold;
+}
+
+/* Category Create */
+
+.admin-category-create form label {
+    font-size: 13px;
+}
+
+.admin-category-create .form-control {
+    height: 45px;
+    font-size: 15px;
+    font-family: Roboto-Regular;
+}
+
+.admin-category-create form .btn {
+    height: 43px;
+    font-family: Roboto-Regular;
+}
+
+.admin-category-create form img {
+    width: 100%;
+    max-height: 200px;
 }
