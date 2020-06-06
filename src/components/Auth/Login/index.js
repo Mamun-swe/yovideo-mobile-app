@@ -7,17 +7,42 @@ class Login extends Component {
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            email_err: "",
+            password_err: ""
         }
+    }
+
+    validate = () => {
+        let email_err = "";
+        let password_err = "";
+
+        if (!this.state.email.includes('@')) {
+            email_err = "Invalid e-mail address."
+        }
+
+        if (!this.state.password) {
+            password_err = "Password is required."
+        }
+
+        if (email_err || password_err) {
+            this.setState({ email_err, password_err });
+            return false;
+        }
+
+        return true;
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-
-        if (this.state.email === 'admin@gmail.com') {
-            this.props.history.push('/admin')
-        } else {
-            this.props.history.push('/home')
+        const isValid = this.validate();
+        if (isValid) {
+            this.setState({ email_err: "", password_err: "" })
+            const logData = {
+                email: this.state.email,
+                password: this.state.password
+            }
+            console.log(logData)
         }
     }
 
@@ -40,13 +65,27 @@ class Login extends Component {
 
                                 {/* E-mail */}
                                 <div className="form-group mb-4">
-                                    <small>E-mail</small>
+                                    {
+                                        this.state.email_err ? (
+                                            <small className="text-danger">
+                                                {this.state.email_err}
+                                            </small>
+                                        ) : <small>E-mail</small>
+                                    }
+
                                     <input type="text" className="form-control rounded-0 shadow-none" placeholder="Enter e-mail" onChange={this.emailChangeHandeller} />
                                 </div>
 
                                 {/* Password */}
                                 <div className="form-group mb-4">
-                                    <small>Password</small>
+                                    {
+                                        this.state.password_err ? (
+                                            <small className="text-danger">
+                                                {this.state.password_err}
+                                            </small>
+                                        ) : <small>Password</small>
+                                    }
+
                                     <input type="password" className="form-control rounded-0 shadow-none" placeholder="Enter password" onChange={this.passwordChangeHandeller} />
                                 </div>
 

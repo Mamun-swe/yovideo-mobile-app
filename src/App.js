@@ -22,7 +22,7 @@ function App() {
           <Route path="/register" component={Register} />
           <Route path="/reset" component={Reset} />
           <Route path="/home" component={UserMaster} />
-          <Route path="/admin" component={AdminMaster}></Route>
+          <Route path="/admin" component={AdminMaster} />
         </Switch>
       </Router>
     </div>
