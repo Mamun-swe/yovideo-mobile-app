@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './index.css';
 import { Link } from 'react-router-dom';
+import url from "../../url";
+import axios from "axios";
+import jwt from "jwt-decode";
 
 class Login extends Component {
     constructor(props) {
@@ -9,7 +12,8 @@ class Login extends Component {
             email: "",
             password: "",
             email_err: "",
-            password_err: ""
+            password_err: "",
+            message: "",
         }
     }
 
@@ -42,7 +46,27 @@ class Login extends Component {
                 email: this.state.email,
                 password: this.state.password
             }
-            console.log(logData)
+
+            axios.post(url + "auth/login", logData)
+                .then(res => {
+                    if (res.data.message === 'success' && res.data.access_token) {
+                        const token = res.data.access_token;
+                        const user = jwt(token)
+                        localStorage.setItem('access_token', res.data.access_token)
+                        if (user.role === 'admin') {
+                            this.props.history.push('/admin')
+                        } else if (user.role === 'user') {
+                            this.props.history.push('/home')
+                        } else {
+                            this.props.history.push('/')
+                        }
+                    }
+                })
+                .catch(err => {
+                    if (err.response.status === 404) {
+                        this.setState({ message: err.response.data.message })
+                    }
+                })
         }
     }
 
@@ -61,6 +85,13 @@ class Login extends Component {
                     <div className="flex-center flex-column">
                         <div className="card border-0 rounded-0">
                             <h4 className="mb-3">Login</h4>
+                            {
+                                this.state.message ? (
+                                    <p className="text-danger">
+                                        {this.state.message}
+                                    </p>
+                                ) : null
+                            }
                             <form onSubmit={this.handleSubmit}>
 
                                 {/* E-mail */}

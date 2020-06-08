@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import './index.css';
 import { NavLink } from 'react-router-dom';
 import $ from 'jquery';
+import axios from "axios";
+import url from "../../url";
 
 import closeIcon from '../../../assets/icons/close.png';
+
 
 class Nav extends Component {
     constructor(props) {
@@ -27,6 +30,41 @@ class Nav extends Component {
 
     closeSearch = () => {
         $('.search-menu').css("right", "-100%")
+    }
+
+
+
+    clearLocaStorage() {
+        localStorage.clear()
+        this.props.history.push('/')
+    }
+
+    // componentDidMount() {
+    //     if (!localStorage.getItem('access_token')) {
+    //         this.clearLocaStorage()
+    //     }
+    // }
+
+    logout() {
+        // Header 
+        const header = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token")
+            }
+        }
+
+        axios.post(url + "auth/logout", header)
+            .then(res => {
+                console.log(res.data.message)
+                if (res.status === 200 && res.data.message === 'success') {
+                    this.clearLocaStorage()
+                }
+            })
+            .catch(err => {
+                if (err) {
+                    console.log(err)
+                }
+            })
     }
 
 
@@ -74,7 +112,11 @@ class Nav extends Component {
                             <li><NavLink to="/home/favourite"><i className="fas fa-heart"></i>Favourites</NavLink></li>
                             <li><NavLink to="/home/my-videos"><i className="fas fa-video"></i>My Videos</NavLink></li>
                             <li><NavLink to="/home/upload"><i className="fas fa-upload"></i>Upload</NavLink></li>
-                            <li><NavLink to="/"><i className="fas fa-sign-out-alt"></i>Logout</NavLink></li>
+                            <li>
+                                <button type="button" className="btn rounded-0 shadow-none" onClick={this.logout}>
+                                    <i className="fas fa-sign-out-alt"></i>Logout
+                                </button>
+                            </li>
                         </ul>
                     </div>
 

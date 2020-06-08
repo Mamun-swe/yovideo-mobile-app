@@ -1,16 +1,49 @@
 import React, { Component } from 'react';
 import './index.css';
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import url from "../../url";
 
-import catPoster from '../../../assets/category_poster/1.jpg';
+// import catPoster from '../../../assets/category_poster/1.jpg';
 
 class Category extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+            categories: []
         }
     }
+
+    clearStorage() {
+        localStorage.clear()
+        this.props.history.push('/')
+    }
+
+    componentDidMount() {
+        if (!localStorage.getItem('access_token')) {
+            this.clearStorage()
+        }
+        // Header 
+        const header = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token")
+            }
+        }
+
+        axios.get(url + "admin/category", header)
+            .then(res => {
+                if (res.status === 200 && res.data.categories) {
+                    this.setState({ categories: res.data.categories })
+                }
+            })
+            .catch(err => {
+                if (err.status === 500) {
+                    this.clearStorage()
+                }
+            })
+    }
+
+
     render() {
         const { categories } = this.state
         return (
@@ -27,12 +60,12 @@ class Category extends Component {
                         {
                             categories.length ?
                                 categories.map(category =>
-                                    <div className="col-6" key={category}>
+                                    <div className="col-6" key={category.id}>
                                         <div className="card shadow">
-                                            <img src={catPoster} className="img-fluid" alt="..." />
+                                            <img src={category.cat_image} className="img-fluid" alt="..." />
                                             <div className="overlay">
                                                 <div className="flex-center flex-column">
-                                                    <p className="mb-0 text-capitalize">funny</p>
+                                                    <p className="mb-0 text-capitalize">{category.cat_name}</p>
                                                 </div>
                                             </div>
                                         </div>

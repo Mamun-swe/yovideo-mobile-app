@@ -62,6 +62,22 @@
     margin-right: 10px;
 }
 
+.home-nav .side-menu ul li .btn {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: capitalize;
+    display: block;
+    width: 100%;
+    padding: 9px 20px;
+    text-align: left;
+    border-bottom: 1px solid #2e2d2d;
+}
+
+.home-nav .side-menu ul li .btn i {
+    margin-right: 10px;
+}
+
 /* Search Bar */
 
 .home-nav .search-menu {
