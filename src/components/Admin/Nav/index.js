@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import './index.css';
 import { NavLink } from 'react-router-dom';
 import $ from 'jquery';
+import axios from "axios";
+import url from "../../url";
 
 import barIcon from '../../../assets/icons/bar.png';
 import closeIcon from '../../../assets/icons/close.png';
 import dashboardIcon from '../../../assets/icons/dashboard.png';
 import categoriesIcon from '../../../assets/icons/categories.png';
+import videoIcon from '../../../assets/icons/video.png';
 import uploadIcon from '../../../assets/icons/upload.png';
 import logoutIcon from '../../../assets/icons/logout.png';
 
@@ -16,7 +19,7 @@ class Nav extends Component {
         this.state = {}
     }
 
-    componentDidMount(){
+    componentDidMount() {
         $('.side-menu').css('left', '-100%')
         $('.bars').show()
         $('.close').hide()
@@ -32,6 +35,34 @@ class Nav extends Component {
         $('.side-menu').css('left', '-100%')
         $('.bars').show()
         $('.close').hide()
+    }
+
+    clearLocaStorage() {
+        localStorage.clear()
+        // this.props.history.push('/')
+        window.location.href = '/';
+    }
+
+    doLogout = () => {
+        // Header 
+        const header = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token")
+            }
+        }
+
+        axios.post(url + "auth/logout", header)
+            .then(res => {
+                console.log(res.data.message)
+                if (res.status === 200 && res.data.message === 'success') {
+                    this.clearLocaStorage()
+                }
+            })
+            .catch(err => {
+                if (err) {
+                    console.log(err)
+                }
+            })
     }
 
 
@@ -61,14 +92,19 @@ class Nav extends Component {
                             </NavLink>
                         </li>
                         <li>
+                            <NavLink exact activeClassName="is-active" to="/admin/videos">
+                                <img src={videoIcon} alt="..." className="mr-2" /> Videos
+                            </NavLink>
+                        </li>
+                        <li>
                             <NavLink exact activeClassName="is-active" to="/admin/upload">
                                 <img src={uploadIcon} alt="..." className="mr-2" />Upload
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink exact activeClassName="is-active" to="/">
-                                <img src={logoutIcon} alt="..." className="mr-2" /> Logout
-                            </NavLink>
+                            <button type="button" className="btn rounded-0 shadow-none" onClick={this.doLogout}>
+                                <img src={logoutIcon} className="img-fluid mr-2" alt="..." />Logout
+                            </button>
                         </li>
                     </ul>
                 </div>

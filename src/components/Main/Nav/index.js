@@ -36,14 +36,14 @@ class Nav extends Component {
 
     clearLocaStorage() {
         localStorage.clear()
-        this.props.history.push('/')
+        window.location.href = '/';
     }
 
-    // componentDidMount() {
-    //     if (!localStorage.getItem('access_token')) {
-    //         this.clearLocaStorage()
-    //     }
-    // }
+    componentDidMount() {
+        if (!localStorage.getItem('access_token')) {
+            this.clearLocaStorage()
+        }
+    }
 
     logout() {
         // Header 
@@ -55,9 +55,9 @@ class Nav extends Component {
 
         axios.post(url + "auth/logout", header)
             .then(res => {
-                console.log(res.data.message)
                 if (res.status === 200 && res.data.message === 'success') {
-                    this.clearLocaStorage()
+                    localStorage.clear()
+                    window.location.href = '/';
                 }
             })
             .catch(err => {

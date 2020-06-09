@@ -50,6 +50,18 @@
     font-family: Roboto-Regular;
 }
 
+.admin-nav .side-menu ul li .btn{
+    width: 100%;
+    display: block;
+    padding: 7px 10px;
+    color: #000;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-family: Roboto-Regular;
+    text-align: left;
+}
+
 .admin-nav .side-menu ul li .is-active {
     border-radius: 4px;
     background: rgba(12, 12, 12, 0.103);
