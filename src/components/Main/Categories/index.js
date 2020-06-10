@@ -1,15 +1,49 @@
 import React, { Component } from 'react';
 import './index.css';
-
-import poster from '../../../assets/category_poster/1.jpg';
+import axios from 'axios';
+import url from '../../url';
 import { Link } from 'react-router-dom';
 
 class Categories extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            categories: []
+        }
     }
+
+    clearLocalStorage() {
+        localStorage.clear()
+        this.props.history.push('/')
+    }
+
+    componentDidMount() {
+        // Header 
+        const header = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token")
+            }
+        }
+
+        if (!header) {
+            this.clearLocalStorage()
+        }
+
+        axios.get(url + "client/categories", header)
+            .then(res => {
+                this.setState({ categories: res.data.categories })
+            })
+            .catch(err => {
+                if (err.response.status === 401) {
+                    this.clearLocalStorage()
+                } else if (err.response.status === 501) {
+                    this.clearLocalStorage()
+                }
+            })
+    }
+
     render() {
+        const { categories } = this.state;
         return (
             <div>
                 <div className="container-fluid my-3 categories">
@@ -20,57 +54,26 @@ class Categories extends Component {
 
                         <div className="col-12">
 
-                            <Link to="/home/category/1">
-                                <div className="card border-0 rounded-0 category-card">
-                                    <div className="poster-box">
-                                        <img src={poster} alt="..." />
-                                        <div className="overlay">
-                                            <div className="flex-center flex-column">
-                                                <p className="mb-0 text-capitalize">sport</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
+                            {
+                                categories.length ?
+                                    categories.map(category =>
 
-                            <Link to="/home/category/2">
-                                <div className="card border-0 rounded-0 category-card">
-                                    <div className="poster-box">
-                                        <img src={poster} alt="..." />
-                                        <div className="overlay">
-                                            <div className="flex-center flex-column">
-                                                <p className="mb-0 text-capitalize">fashion</p>
+                                        <Link to={`/home/category/${category.id}`} key={category.id}>
+                                            <div className="card border-0 rounded-0 category-card">
+                                                <div className="poster-box">
+                                                    <img src={category.cat_image} alt="..." />
+                                                    <div className="overlay">
+                                                        <div className="flex-center flex-column">
+                                                            <p className="mb-0 text-capitalize">{category.cat_name}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
+                                        </Link>
 
-                            <Link to="/home/category/3">
-                                <div className="card border-0 rounded-0 category-card">
-                                    <div className="poster-box">
-                                        <img src={poster} alt="..." />
-                                        <div className="overlay">
-                                            <div className="flex-center flex-column">
-                                                <p className="mb-0 text-capitalize">technology</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-
-                            <Link to="/home/category/4">
-                                <div className="card border-0 rounded-0 category-card">
-                                    <div className="poster-box">
-                                        <img src={poster} alt="..." />
-                                        <div className="overlay">
-                                            <div className="flex-center flex-column">
-                                                <p className="mb-0 text-capitalize">funny</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
+                                    ) :
+                                    null
+                            }
 
                         </div>
 

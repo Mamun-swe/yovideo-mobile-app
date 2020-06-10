@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './index.css';
 import ReactPlayer from 'react-player'
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import url from "../../url";
 
 import poster from '../../../assets/poster/1.jpg';
 import playIcon from '../../../assets/icons/play.png';
@@ -12,10 +14,43 @@ class VideoPlayer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            url: 'https://www.youtube.com/embed/qvVOShe8LVI?list=RDMMqvVOShe8LVI',
+            video_title: null,
+            watch_time: null,
+            video_url: null,
             videos: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         }
     }
+
+    componentDidMount() {
+        // Header 
+        const header = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token")
+            }
+        }
+
+        if (!header) {
+            this.clearLocalStorage()
+        }
+
+        axios.get(url + `client/play/${this.props.match.params.id}`, header)
+            .then(res => {
+                this.setState({
+                    video_url: res.data.video[0].video_file,
+                    video_title: res.data.video[0].video_title,
+                    watch_time: res.data.video[0].watch_time
+                })
+            })
+            .catch(err => {
+                if (err.response.status === 401) {
+                    this.clearLocalStorage()
+                } else if (err.response.status === 501) {
+                    this.clearLocalStorage()
+                }
+            })
+    }
+
+
     render() {
         const { videos } = this.state;
 
@@ -25,17 +60,17 @@ class VideoPlayer extends Component {
                     <div className="row">
                         <div className="col-12 p-0">
                             <ReactPlayer
-                                url={this.state.url}
+                                url={this.state.video_url}
                                 width="100%"
                                 height="100%"
                                 controls={true}
                             />
                         </div>
                         <div className="col-12 p-2 video-info">
-                            <h6 className="mb-0">video title</h6>
+                            <h6 className="mb-0">{this.state.video_title}</h6>
                             <div className="d-flex">
                                 <div className="pt-2">
-                                    <small className="text-muted mb-0"><i className="fas fa-eye mr-2"></i>2000</small>
+                                    <small className="text-muted mb-0"><i className="fas fa-eye mr-2"></i>{this.state.watch_time}</small>
                                 </div>
                                 <div className="ml-auto">
                                     <button className="btn text-danger rounded-0 shadow-none">
