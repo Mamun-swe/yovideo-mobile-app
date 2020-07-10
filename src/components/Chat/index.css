@@ -1,0 +1,82 @@
+.chat_master .chat_nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    background: #fff;
+}
+
+.chat_master .chat_nav p {
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.chat_master .chat_nav .btn {
+    font-size: 14px;
+}
+
+.chat_master .break {
+    height: 59px;
+}
+
+.chat_master .chat_body .message_user {
+    cursor: pointer;
+    border-bottom: 1px solid #dfdfdf50;
+}
+
+.chat_master .chat_body .message_user .name_circle {
+    background: #dfdfdf;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+}
+
+.chat_master .chat_body .message_user .name_circle h4 {
+    color: #000;
+    font-weight: 900;
+    font-size: 18px;
+    padding-top: 7px;
+}
+
+.chat_master .chat_body .message_user p {
+    color: #000;
+    font-size: 13px;
+    line-height: 7px;
+    padding-top: 5px;
+    font-family: Roboto-Regular;
+}
+
+/* Message Dialog */
+
+.chat_master .message_dialog {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 290px;
+    height: 460px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 999;
+    background: #fff;
+    color: #000;
+    border-radius: 8px;
+}
+
+.chat_master .message_dialog .message_header {
+    position: fixed;
+    width: 290px;
+    background: #fff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+
+.chat_master .message_dialog .message_footer {
+    position: fixed;
+    width: 290px;
+    background: #fff;
+    bottom: 20px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

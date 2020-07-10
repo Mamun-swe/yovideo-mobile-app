@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import $ from 'jquery';
 import axios from "axios";
 import url from "../../url";
@@ -31,8 +31,6 @@ class Nav extends Component {
     closeSearch = () => {
         $('.search-menu').css("right", "-100%")
     }
-
-
 
     clearLocaStorage() {
         localStorage.clear()
@@ -72,12 +70,17 @@ class Nav extends Component {
         return (
             <div className="home-nav">
                 <div className="navbar">
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex">
                         <div>
                             <i className="fas fa-bars" onClick={this.openMenu}></i>
                         </div>
                         <div>
                             <h5 className="text-uppercase mb-0 mt-2">yovideos</h5>
+                        </div>
+                        <div className="ml-auto">
+                            <Link to="/messages" type="button" className="btn rounded-0 shadow-none p-0">
+                                <i className="fab fa-facebook-messenger"></i>
+                            </Link>
                         </div>
                         <div>
                             <button type="button" className="btn p-0" onClick={this.openSearch}>

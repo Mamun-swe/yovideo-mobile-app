@@ -12,6 +12,8 @@ import Reset from './components/Auth/Reset/index';
 import UserMaster from './components/Main/user.master';
 // Admin Master
 import AdminMaster from './components/Admin/admin.master';
+// Chat Master
+import ChatMaster from './components/Chat/index';
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           <Route path="/reset" component={Reset} />
           <Route path="/home" component={UserMaster} />
           <Route path="/admin" component={AdminMaster} />
+          <Route path="/messages" component={ChatMaster} />
         </Switch>
       </Router>
     </div>

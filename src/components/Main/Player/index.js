@@ -162,9 +162,11 @@ class VideoPlayer extends Component {
             var addFavouriteList = <button className="btn text-danger rounded-0 shadow-none" title="Add Favourites" onClick={this.addFavourite}><img src={nullHeartIcon} alt="..." /></button>
         } else if (this.state.status === "1") {
             var removefavouriteList = <button className="btn text-danger rounded-0 shadow-none" title="Remove From Favourite" onClick={this.removefavourite}><img src={blockHeart} alt="..." /></button>
-        } else {
-            var addFavouriteList = <button className="btn text-danger rounded-0 shadow-none" title="Add Favourites" onClick={this.addFavourite}><img src={nullHeartIcon} alt="..." /></button>
         }
+        
+        // else {
+        //     var addFavouriteList = <button className="btn text-danger rounded-0 shadow-none" title="Add Favourites" onClick={this.addFavourite}><img src={nullHeartIcon} alt="..." /></button>
+        // }
 
 
 
